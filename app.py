@@ -41,7 +41,7 @@ parser = ArgumentParser()
 parser.add_argument("--config", type=str, default="example/config/base.yaml")
 parser.add_argument("--server-name", type=str, default="0.0.0.0")
 parser.add_argument("--port", type=int, default=7860)
-parser.add_argument("--share", type=bool, default=False)
+parser.add_argument("--share", type=bool, default=True)
 
 parser.add_argument("--save-path", default="samples")
 parser.add_argument("--ckpt", type=str, default="checkpoints/")
@@ -329,8 +329,7 @@ with gr.Blocks(css=css) as demo:
             fn=controller.foley,
         )
 
-    demo.queue(10)
-    demo.launch(
+    app.launch(
         server_name=args.server_name,
         server_port=args.port,
         share=args.share,
